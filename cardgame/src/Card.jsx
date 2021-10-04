@@ -3,42 +3,41 @@ import * as React from 'react';
 import './Card.css';
 import Animal from './Animal';
 
-export default function Card() {
-  const elephant = new Animal('Elefant', 'placeholder.png', 3.3, 6000, 70, 1, 40);
-
-  return (
+export default function Card({ animal, uncovered }) {
+  const front = (
     <div className="card">
-      <h1>{elephant.name}</h1>
-      <img
-        alt="Elefant"
-        height="200"
-        width="200"
-        src={`${process.env.PUBLIC_URL}/${elephant.image}`}
-      />
+      <h1>{animal.name ? animal.name : 'Unbekannt'}</h1>
+      {animal.image && (
+        <img
+          alt="Elefant"
+          height="200"
+          width="200"
+          src={`${process.env.PUBLIC_URL}/${animal.image}`}
+        />
+      )}
       <table>
         <tbody>
-          <tr>
-            <td>Größe</td>
-            <td>{elephant.size} m</td>
-          </tr>
-          <tr>
-            <td>Gewicht</td>
-            <td>{elephant.weight} kg</td>
-          </tr>
-          <tr>
-            <td>Alter</td>
-            <td>{elephant.age} Jahre</td>
-          </tr>
-          <tr>
-            <td>Nachkommen</td>
-            <td>{elephant.offspring}</td>
-          </tr>
-          <tr>
-            <td>Geschwindigkeit</td>
-            <td>{elephant.speed} km</td>
-          </tr>
+          {Object.keys(Animal.properties).map((property) => {
+            const animalProp = Animal.properties[property];
+            return (
+              <tr key={property}>
+                <td>{animalProp.label}</td>
+                <td>
+                  {animal[property]}&nbsp;
+                  {animalProp.unit}
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
   );
+  const back = <div className="card back" />;
+  if (uncovered) {
+    return front;
+  }
+  if (!uncovered) {
+    return back;
+  }
 }
