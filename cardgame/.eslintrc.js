@@ -14,14 +14,16 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
-    allowElseIf: 'true',
     'no-use-before-define': 'off',
+    'import/no-extraneous-dependencies': 'error',
+    'react/prefer-stateless-function': [0, { ignorePureComponents: true }],
     '@typescript-eslint/no-use-before-define': ['error'],
     'prettier/prettier': [
       'error',
       {
         endOfLine: 'auto',
       },
+      { usePrettierrc: true },
     ],
   },
 };

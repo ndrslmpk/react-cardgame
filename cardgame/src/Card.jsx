@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import './Card.css';
+import PropTypes from 'prop-types';
 import Animal from './Animal';
 
 export default function Card({ animal, uncovered }) {
@@ -41,3 +42,8 @@ export default function Card({ animal, uncovered }) {
     return back;
   }
 }
+
+Card.propTypes = {
+  uncovered: PropTypes.bool.isRequired,
+  animal: PropTypes.instanceOf(Animal).isRequired,
+};

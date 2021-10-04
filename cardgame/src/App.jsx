@@ -1,18 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './App.css';
-import Card from './Card';
-import Animal from './Animal';
+import Game from './Game';
 
 // eslint-disable-next-line react/prefer-stateless-function
-export default class App extends Component {
-  render() {
-    const elephant = new Animal('Elefant', 'placeholder.png', 3.3, 6000, 70, 1, 40);
-    return (
-      <div>
-        <h1>Ndrslmpk Cardgame</h1>
-        <Card animal={elephant} uncovered />
-      </div>
-    );
-  }
+export default function App() {
+  return (
+    <div>
+      <Game title="Ndrslmpk NFT-Card-Guessing-Game" />
+    </div>
+  );
 }
